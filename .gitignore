@@ -58,3 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Script Inspector 3 is proprietary, but Nikola likes to use it
+[Aa]ssets/Plugins/Editor/ScriptInspector3*
+
+# The backup directory for debugging - only keep this around for releases
+*BackUpThisFolder_ButDontShipItWithYourGame
