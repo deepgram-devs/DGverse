@@ -38,8 +38,8 @@ public class DeepgramInstance : MonoBehaviour
 	{
 		var headers = new Dictionary<string, string>
 		{
-			{ "Authorization", "Token 5d40ca35876475dde099b00dd23847478e1039f6" }
-        };
+			{ "Authorization", "Token INSERT_YOUR_API_KEY" }
+        	};
 		websocket = new WebSocket("wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=" + AudioSettings.outputSampleRate.ToString(), headers);
 
 		websocket.OnOpen += () =>
