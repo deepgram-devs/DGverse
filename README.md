@@ -2,6 +2,8 @@
 
 DGverse is a 3D and VR experience utilizing Deepgram Automatic Speech Recognition (ASR).
 
+![Spawning a cube with your voice.](./README_assets/vr_screenshot.jpeg)
+
 In this repository, by default, the project is set up to run without any VR plugins or VR rig. This is so that the project
 can be worked on portably on any development platform (Windows, macOS, Linux).
 
