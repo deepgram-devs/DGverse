@@ -149,7 +149,7 @@ Find the "Oculus XR Plugin" under "VR" in the tab on the left and click "Install
 
 You may get the following warning, and if you do, just click "Yes":
 
-![Address a Oculus XR Plugin warning.](./READMe_assets/address_oculus_xr_plugin_warning.png)
+![Address a Oculus XR Plugin warning.](./README_assets/address_oculus_xr_plugin_warning.png)
 
 Now, go to `Edit -> Project Settings`, click on the "Android" tab (indicated by the Android icon, see screenshot below) and check the "Oculus" box.
 
@@ -213,7 +213,7 @@ Now when you look at SideQuest, you should see the following warning:
 As suggested, now put on your Quest 2 headset and you will see some prompt asking you to allow the computer access to the headset - click "Allow".
 
 Finally, in SideQuest, you should see some green dot in the upper left corner, indicating your computer is successfully connected to the Quest 2!
-Now on the top bar of SideQuest, click on the "folder icon" to "Install APK file from folder on computer.":
+Now on the top bar of SideQuest, click on the icon with the arrow to the left of the "folder icon" to "Install APK file from folder on computer.":
 
 ![Install the APK file to the Quest 2.](./README_assets/sidequest_install_apk_file.png)
 
