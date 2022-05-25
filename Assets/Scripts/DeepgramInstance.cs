@@ -32,12 +32,13 @@ public class DeepgramInstance : MonoBehaviour
 	WebSocket websocket;
 
 	public TMP_Text textField;
+	public ASRTriggerController asrTriggerController;
 
 	async void Start()
 	{
 		var headers = new Dictionary<string, string>
 		{
-			{ "Authorization", "Token INSERT_YOUR_API_KEY" }
+			{ "Authorization", "Token 5d40ca35876475dde099b00dd23847478e1039f6" }
         };
 		websocket = new WebSocket("wss://api.deepgram.com/v1/listen?encoding=linear16&sample_rate=" + AudioSettings.outputSampleRate.ToString(), headers);
 
@@ -69,6 +70,7 @@ public class DeepgramInstance : MonoBehaviour
 				var transcript = deepgramResponse.channel.alternatives[0].transcript;
 				Debug.Log(transcript);
 				textField.text = transcript.ToString();
+				asrTriggerController.HandleASR(transcript.ToString());
 			}
 		};
 
