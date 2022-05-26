@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[System.Serializable]
+public class CleverbotResponse
+{
+	public string cs;
+	public string output;
+}
+
 public class ASRTriggerController : MonoBehaviour
-{	
+{
+	private bool cleverbotConversationStarted = false;
+	private string cleverbotCS;
+
     void Start()
     {
 
@@ -39,14 +49,40 @@ public class ASRTriggerController : MonoBehaviour
 		{
 			if (message.Length > 0)
 			{
-				StartCoroutine(PlayTextAsAudio(message));
+				StartCoroutine(GetCleverbotResponse(message));
 			}
 		}
 	}
  
+	IEnumerator GetCleverbotResponse(string text)
+	{
+		string url = "https://www.cleverbot.com/getreply?key=" + "INSERT_YOUR_CLEVERBOT_API_KEY";
+		if (cleverbotConversationStarted) {
+			url += "&cs=" + cleverbotCS;
+		}
+		url += "&input=" + text;
+
+    	UnityWebRequest uwr = UnityWebRequest.Get(url);
+    	yield return uwr.SendWebRequest();
+
+    	if (uwr.isNetworkError)
+    	{
+        	Debug.Log("Error While Sending: " + uwr.error);
+    	}
+    	else
+    	{
+			Debug.Log("Received: " + uwr.downloadHandler.text);
+
+			CleverbotResponse cleverbotResponse = JsonUtility.FromJson<CleverbotResponse>(uwr.downloadHandler.text);
+			StartCoroutine(PlayTextAsAudio(cleverbotResponse.output));
+			cleverbotCS = cleverbotResponse.cs;
+			cleverbotConversationStarted = true;
+    	}
+	}
+
 	IEnumerator PlayTextAsAudio(string text)
 	{
-		string url = "https://ad1f-75-172-104-200.ngrok.io/text-to-speech?text=" + text;
+		string url = "https://55bd-75-172-104-200.ngrok.io/text-to-speech?text=" + text;
 		using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
 		{
 			yield return www.SendWebRequest();

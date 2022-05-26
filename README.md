@@ -35,6 +35,7 @@ Navigate to the "DGverse" directory you just cloned and click "Open":
 
 In the lower-left Project tab, navigate to `Assets -> Scripts`. You should see a `DeepgramInstance.cs` script in the center-bottom panel.
 Open it (by double-clicking, or by using something like Script Inspector 3), and replace the text `INSERT_YOUR_API_KEY` with your Deepgram API key.
+Also in `Assets -> Scripts` open `ASRTriggerController.cs` and replace the text `INSERT_YOUR_CLEVERBOT_API_KEY` with your Cleverbot API key.
 
 You should now be able to press the "Play" button near the center-top of the Unity Editor!
 
