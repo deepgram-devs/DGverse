@@ -46,6 +46,17 @@ public class ASRTriggerController : MonoBehaviour
                 "It might be the only place you get to see an elephant",
                 "It's filled with animals"
             }
+        },
+        new CharadesQuestion {
+            solution = "cowboy",
+            hints = new string [] {
+                "11 are on the field in Dallas",
+                "Howdy Doodie, Woody, and The Lone Ranger are some",
+                "According to a song, you can save a horse by riding one ",
+                "You can find them at the rodeo",
+                "They are an essential part of Westerns",
+                "A lasso, boots, and a stetson are part of the uniform"
+            }
         }
     };
 
