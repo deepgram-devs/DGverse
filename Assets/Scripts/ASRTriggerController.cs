@@ -48,6 +48,303 @@ public class ASRTriggerController : MonoBehaviour
             }
         },
         new CharadesQuestion {
+            solution = "book",
+            hints = new string [] {
+                "A judge might throw one at you",
+                "Chris and Streeter aren't sure which way is up",
+                "It can transport you",
+                "You might have cases for them",
+                "You probably had to buy some for college classes",
+                "It's best when read"
+            }
+        },
+        new CharadesQuestion {
+            solution = "birthday",
+            hints = new string [] {
+                "Everyone has one",
+                "It's a date",
+                "It's listed on most forms of ID",
+                "It determines your age",
+                "It happens once a year",
+                "It's traditionally celebrated with cake, candles and presents"
+            }
+        },
+        new CharadesQuestion {
+            solution = "arm",
+            hints = new string [] {
+                "It's the essential part of a baseball pitcher",
+                "Your chair might have two",
+                "You probably have two too",
+                "It has a fore and an upper part",
+                "Someone with a broken one gets a cast",
+                "It's the body part that connects your wrist and elbow"
+            }
+        },
+        new CharadesQuestion {
+            solution = "frog",
+            hints = new string [] {
+                "It crosses the road in a video game",
+                "It leaps",
+                "It might be a bull ",
+                "It uses its tongue to catch lunch on the fly",
+                "It's an amphibian",
+                "It's not a toad"
+            }
+        },
+        new CharadesQuestion {
+            solution = "balloon",
+            hints = new string [] {
+                "It floats on a string",
+                "It might be filled with gas",
+                "You should watch out for the water ones!",
+                "Clowns can make animals from them",
+                "Sometimes they say Happy Birthday",
+                "The make a loud sound when they pop"
+            }
+        },
+        new CharadesQuestion {
+            solution = "beach",
+            hints = new string [] {
+                "It goes with volleyball, ball, and towel",
+                "It's a great place to catch some rays",
+                "Hotels on this are very expensive!",
+                "It's a great place for a sandcastle",
+                "The ocean is there",
+                "It's sandy"
+            }
+        },
+        new CharadesQuestion {
+            solution = "bird",
+            hints = new string [] {
+                "It has wings",
+                "Not all of them fly",
+                "It might visit your garden for a snack",
+                "It can range in size from just larger than a bumblebee to over 8 feet tall",
+                "It evolved from dinosaurs",
+                "It hatched from an egg"
+            }
+        },
+        new CharadesQuestion {
+            solution = "lollipop",
+            hints = new string [] {
+                "It might be a Dum Dum",
+                "It's a song by the Chordettes, Ben Kweller, and Lil' Wayne",
+                "It might be filled with bubble gum or tootsie roll",
+                "No one knows how many licks it takes to get to the center ",
+                "Some people think they are suckers",
+                "It's sugar on a stick"
+            }
+        },
+        new CharadesQuestion {
+            solution = "spider",
+            hints = new string [] {
+                "It might be itsy-bitsy",
+                "It goes up the water spout",
+                "It might get washed out by rain",
+                "One named Boris has his own song",
+                "It has eight legs",
+                "It's quite the webspinner "
+            }
+        },
+        new CharadesQuestion {
+            solution = "truck",
+            hints = new string [] {
+                "It's a heavy duty hauler",
+                "Henry Ford built some",
+                "They're big in Texas",
+                "They come in super duty and king ranch editions",
+                "They have cabs",
+                "Silverado is one"
+            }
+        },
+        new CharadesQuestion {
+            solution = "boat",
+            hints = new string [] {
+                "It's a hole in the water",
+                "It can have multiple means of propulsion",
+                "One method of propulsion might be the wind",
+                "Moe spends a lot of spare time working on his",
+                "It might have a mast, rigging, and sails",
+                "Some people prefer the term ship or vessel"
+            }
+        },
+        new CharadesQuestion {
+            solution = "penny",
+            hints = new string [] {
+                "It's a piece of change",
+                "Your thoughts cost one",
+                "You can leave one or take one",
+                "It's not really copper",
+                "Lincoln likes it",
+                "It's one cent"
+            }
+        },
+        new CharadesQuestion {
+            solution = "baseball",
+            hints = new string [] {
+                "It's a sport with a bat",
+                "You play on a diamond",
+                "You can steal in this game",
+                "They encourage peanuts and Cracker Jacks with song",
+                "Babe Ruth is known to have played",
+                "It's name is two of the major components of the game"
+            }
+        },
+        new CharadesQuestion {
+            solution = "banana",
+            hints = new string [] {
+                "It's a yellow fruit",
+                "It might be the most common fruit in comedy",
+                "It's recommended you peel this one",
+                "It gets split with ice cream",
+                "Elvis liked his with on a sandwich with peanut butter",
+                "Monkeys like this fruit"
+            }
+        },
+        new CharadesQuestion {
+            solution = "baby",
+            hints = new string [] {
+                "You have to be careful, it's fragile",
+                "It requires a lot of special equipement",
+                "It's day job is to sleep, eat, and cry",
+                "It's still growing",
+                "Mom and Dad plus this makes three",
+                "It's a brand new human"
+            }
+        },
+        new CharadesQuestion {
+            solution = "duck",
+            hints = new string [] {
+                "It's the second D of Dodgeball",
+                "Two of them come before goose in a children's game",
+                "It's a logo for Dooney & Bourke",
+                "They have a hockey team, 3 movies, and a TV show",
+                "Hunting them was the focus of a 1984 NES game",
+                "Darkwing, Daffy and Donald are some"
+            }
+        },
+        new CharadesQuestion {
+            solution = "alligator",
+            hints = new string [] {
+                "It's a dangerous reptile",
+                "It's cousin had a huge roll in Peter Pan",
+                "It can be found in Florida ",
+                "It lives on land and in the water",
+                "It has a big mouth",
+                "It's not a crocodile"
+            }
+        },
+        new CharadesQuestion {
+            solution = "pants",
+            hints = new string [] {
+                "Never leave home without them",
+                "They are great hiney hiders!",
+                "You can fly by the seat of them",
+                "The stretchy ones are the best",
+                "They come in running, jogger, and sweat varieties",
+                "Jeans, slacks, khakis"
+            }
+        },
+        new CharadesQuestion {
+            solution = "fire",
+            hints = new string [] {
+                "3 3s in a row in NBA Jam will light you on this",
+                "The Doors wanted you to light it",
+                "It might have a place in your home",
+                "Your outfit might be this",
+                "It's helpful for making s'mores",
+                "It's burning up"
+            }
+        },
+        new CharadesQuestion {
+            solution = "puppy",
+            hints = new string [] {
+                "Petting one is the best therapy",
+                "It might chew your shoes",
+                "It grows up because its just a baby",
+                "You have to train it and you might need to teach it to go outside",
+                "They have a lot of energy and love to play fetch",
+                "It's a baby corgi"
+            }
+        },
+        new CharadesQuestion {
+            solution = "big",
+            hints = new string [] {
+                "The first word in Nelly's song Air Force Ones",
+                "You might describe your older brother this way",
+                "Like giants",
+                "Like skyscrapers",
+                "Synonym for huge",
+                "Not small"
+            }
+        },
+        new CharadesQuestion {
+            solution = "basketball",
+            hints = new string [] {
+                "The Fresh Prince played outside of school",
+                "The goal is 10 feet high",
+                "You can travel in this game",
+                "The court has keys",
+                "It's a sport for tall people",
+                "It's also known as hoops"
+            }
+        },
+        new CharadesQuestion {
+            solution = "rainbow",
+            hints = new string [] {
+                "There are riches at the end",
+                "Leprechauns like them",
+                "It's quite colorful",
+                "It has something to do with a guy named ROY",
+                "They need a little rain and a little sun to appear",
+                "It's the University of Hawaii Mascot"
+            }
+        },
+        new CharadesQuestion {
+            solution = "bed",
+            hints = new string [] {
+                "They come in a Full suite of sizes",
+                "Goldilocks was found in Mama Bear's",
+                "You shouldn't jump on it",
+                "You can get one with water!",
+                "You can be served breakfast there ",
+                "You probably sleep in one"
+            }
+        },
+        new CharadesQuestion {
+            solution = "bike",
+            hints = new string [] {
+                "You probably know how to ride one",
+                "Some roads have lanes just for these",
+                "They come in dirt, street, and racing variations",
+                "They ride these on a famous tour in France",
+                "It's the first word in BMX",
+                "They have two wheels"
+            }
+        },
+        new CharadesQuestion {
+            solution = "water",
+            hints = new string [] {
+                "You should drink it",
+                "The wellness challenge wants you to drink more",
+                "It might kill you if you go too deep",
+                "It might kill you if you go too deep",
+                "It helps you wash things",
+                "70% of your body is made out of it "
+            }
+        },
+        new CharadesQuestion {
+            solution = "belt",
+            hints = new string [] {
+                "Your pants might have loops just for this",
+                "Some of them are reversable",
+                "You can get a big buckle for it",
+                "You car probably has a few",
+                "Sour ones are pretty delicious",
+                "It holds your pants up"
+            }
+        },
+        new CharadesQuestion {
             solution = "cowboy",
             hints = new string [] {
                 "11 are on the field in Dallas",
