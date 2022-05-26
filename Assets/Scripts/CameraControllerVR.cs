@@ -4,29 +4,29 @@ using UnityEngine;
 using UnityEngine.XR;
 
 public class CameraControllerVR : MonoBehaviour
-{	
-	public XRNode inputSource;
-	Vector2 inputAxis;
-	
-	CharacterController character;
-	Camera cam;
+{
+    public XRNode inputSource;
+    Vector2 inputAxis;
 
-	void Start()
-	{
-		character = GetComponent<CharacterController>();
-		cam = GetComponentsInChildren<Camera>()[0];
-	}
+    CharacterController character;
+    Camera cam;
 
-	void Update()
-	{
-		InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
-		device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
-	}
-	
-	private void FixedUpdate()
-	{
-		Quaternion headYaw = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0);
-		Vector3 direction = headYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
-		character.Move(direction * Time.fixedDeltaTime);
-	}
+    void Start()
+    {
+        character = GetComponent<CharacterController>();
+        cam = GetComponentsInChildren<Camera>()[0];
+    }
+
+    void Update()
+    {
+        InputDevice device = InputDevices.GetDeviceAtXRNode(inputSource);
+        device.TryGetFeatureValue(CommonUsages.primary2DAxis, out inputAxis);
+    }
+
+    private void FixedUpdate()
+    {
+        Quaternion headYaw = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0);
+        Vector3 direction = headYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
+        character.Move(direction * Time.fixedDeltaTime);
+    }
 }
