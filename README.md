@@ -163,6 +163,12 @@ Now go to `File -> Build Settings`, click on "Android" and then "Switch Platform
 Now, we need to edit a couple objects in our Unity scene. In the "Sample Scene" on the left where the game objects are listed,
 right click and select `XR -> Convert Main Camera To XR Rig`.
 
+Then, find the "Main Camera" object under `XRRig -> Camera Offset -> Main Camera`
+and remove the `CameraController3D.cs` script/component from it. Then, add a "Character Controller" component to the "XR Rig" object,
+and finally attach the `CameraControllerVR.cs` script to the "XR Rig" object as a component. This is essentially removing the keyboard movement
+controls and replacing them with movement controls which use the left joystick of the VR device. The mouse looking controls
+aren't needed in VR as the "XRRig" object somehow uses the VR headset for tracking where you are looking.
+
 Finally, go back to `File -> Build Settings`, click "Build", and give a name to the APK file you are about to build.
 You may get some (two?) warnings/notifications to upgrade the Android SDK - click "Update Android SDK" in all (both?) cases:
 
