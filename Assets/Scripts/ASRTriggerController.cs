@@ -83,6 +83,7 @@ public class ASRTriggerController : MonoBehaviour
         Debug.Log("HandleASR: " + message);
 
         GameObject lobbyPlane = GameObject.Find("LobbyPlane");
+        GameObject charadesPlane = GameObject.Find("CharadesPlane");
         GameObject cleverbotPlane = GameObject.Find("CleverbotPlane");
 
         if (Vector3.Distance(Camera.main.transform.position, lobbyPlane.transform.position) < 25 * Mathf.Sqrt(2))
@@ -148,6 +149,8 @@ public class ASRTriggerController : MonoBehaviour
 
     IEnumerator GetCleverbotResponse(string text)
     {
+        GameObject cleverbot = GameObject.Find("Cleverbot");
+
         string url = "https://www.cleverbot.com/getreply?key=" + "INSERT_YOUR_CLEVERBOT_API_KEY";
         if (cleverbotConversationStarted)
         {
@@ -167,9 +170,28 @@ public class ASRTriggerController : MonoBehaviour
             Debug.Log("Received: " + uwr.downloadHandler.text);
 
             CleverbotResponse cleverbotResponse = JsonUtility.FromJson<CleverbotResponse>(uwr.downloadHandler.text);
-            StartCoroutine(PlayTextAsAudio(cleverbotResponse.output));
+            StartCoroutine(PlayTextAsAudioAtPosition(cleverbotResponse.output, cleverbot.transform.position));
             cleverbotCS = cleverbotResponse.cs;
             cleverbotConversationStarted = true;
+        }
+    }
+
+    IEnumerator PlayTextAsAudioAtPosition(string text, Vector3 position)
+    {
+        string url = "https://dgversetts.deepgram.com/text-to-speech/polly?text=" + text;
+        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.ConnectionError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                AudioClip myClip = DownloadHandlerAudioClip.GetContent(www);
+                AudioSource.PlayClipAtPoint(myClip, position);
+            }
         }
     }
 
@@ -187,7 +209,6 @@ public class ASRTriggerController : MonoBehaviour
             else
             {
                 AudioClip myClip = DownloadHandlerAudioClip.GetContent(www);
-
                 AudioSource audioSource = GetComponent<AudioSource>();
                 audioSource.clip = myClip;
                 audioSource.Play();
