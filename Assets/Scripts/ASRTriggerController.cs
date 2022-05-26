@@ -83,7 +83,7 @@ public class ASRTriggerController : MonoBehaviour
 
     IEnumerator PlayTextAsAudio(string text)
     {
-        string url = "https://55bd-75-172-104-200.ngrok.io/text-to-speech?text=" + text;
+        string url = "https://dgversetts.deepgram.com/text-to-speech/polly?text=" + text;
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
         {
             yield return www.SendWebRequest();
