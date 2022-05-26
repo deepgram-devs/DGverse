@@ -18,6 +18,9 @@ public class CharadesQuestion
 
 public class ASRTriggerController : MonoBehaviour
 {
+    public Material materialDGRed;
+    public Material materialApple;
+
     private bool cleverbotConversationStarted = false;
     private string cleverbotCS;
 
@@ -93,6 +96,33 @@ public class ASRTriggerController : MonoBehaviour
                 GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 Rigidbody cubeRigidbody = cube.AddComponent<Rigidbody>();
                 cube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5.0f;
+            }
+
+            if (message.Contains("sphere"))
+            {
+                GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                Rigidbody sphereRigidbody = sphere.AddComponent<Rigidbody>();
+                sphere.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5.0f;
+            }
+
+            if (message.Contains("plane") || message.Contains("plain"))
+            {
+                GameObject x = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Rigidbody xRigidbody = x.AddComponent<Rigidbody>();
+                x.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5.0f;
+                x.transform.localScale = new Vector3(1.0f, 1.0f, 0.1f);
+                x.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - x.transform.position);
+                x.GetComponent<Renderer>().material = materialDGRed;
+            }
+
+            if (message.Contains("apple"))
+            {
+                GameObject x = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                Rigidbody xRigidbody = x.AddComponent<Rigidbody>();
+                x.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5.0f;
+                x.transform.localScale = new Vector3(1.0f, 1.0f, 0.1f);
+                x.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - x.transform.position);
+                x.GetComponent<Renderer>().material = materialApple;
             }
         }
 
