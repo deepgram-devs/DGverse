@@ -432,7 +432,7 @@ public class ASRTriggerController : MonoBehaviour
             if (!onSentimentPlane)
             {
                 onSentimentPlane = true;
-                StartCoroutine(PlayTextAsAudio("Hatch the chrysalis by telling it happy stories! Press space, a, b, x, or y to start recording your story. But be careful! If you get angry or upset, you might kill it!"));
+                StartCoroutine(PlayTextAsAudio("Hatch the chrysalis by telling it happy stories! Press space on a computer or the ay button on a quest 2 to start recording your story. But be careful! If you get angry or upset, you might kill it!"));
             }
         }
         else

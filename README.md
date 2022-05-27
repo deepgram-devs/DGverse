@@ -34,8 +34,10 @@ Navigate to the "DGverse" directory you just cloned and click "Open":
 ![Open DGverse.](./README_assets/open_dgverse.png)
 
 In the lower-left Project tab, navigate to `Assets -> Scripts`. You should see a `DeepgramInstance.cs` script in the center-bottom panel.
-Open it (by double-clicking, or by using something like Script Inspector 3), and replace the text `INSERT_YOUR_API_KEY` with your Deepgram API key.
+Open it (by double-clicking, or by using something like Script Inspector 3), and replace the text `INSERT_YOUR_DEEPGRAM_API_KEY` with your Deepgram API key.
 Also in `Assets -> Scripts` open `ASRTriggerController.cs` and replace the text `INSERT_YOUR_CLEVERBOT_API_KEY` with your Cleverbot API key.
+
+You may need to go to `Assets -> Scenes` and double click "SampleScene.unity" there to open up the main (and only) game scene.
 
 You should now be able to press the "Play" button near the center-top of the Unity Editor!
 
@@ -168,6 +170,9 @@ and remove the `CameraController3D.cs` script/component from it. Then, add a "Ch
 and finally attach the `CameraControllerVR.cs` script to the "XR Rig" object as a component. This is essentially removing the keyboard movement
 controls and replacing them with movement controls which use the left joystick of the VR device. The mouse looking controls
 aren't needed in VR as the "XRRig" object somehow uses the VR headset for tracking where you are looking.
+
+Now, edit the `MicrophoneInstance.cs` script and look for the comments which say "CHANGE FOR 3D/VR" - these comments should tell you what lines
+need to be changed. Also, modify the MicrophoneObject and add "Right Hand" to the "Right Hand Source".
 
 Finally, go back to `File -> Build Settings`, click "Build", and give a name to the APK file you are about to build.
 You may get some (two?) warnings/notifications to upgrade the Android SDK - click "Update Android SDK" in all (both?) cases:
