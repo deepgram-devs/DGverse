@@ -6,6 +6,14 @@ using UnityEngine.Audio;
 [RequireComponent(typeof(AudioSource))]
 public class MicrophoneInstance : MonoBehaviour
 {
+    // UNCOMMENT THE BLOCK COMMENT FOR VR
+    /*
+    public XRNode leftHandSource;
+    public XRNode rightHandSource;
+    */
+    bool vrButtonPressedPrevious = false;
+    bool vrButtonPressedCurrent = false;
+
     AudioSource _audioSource;
     int lastPosition, currentPosition;
 
@@ -33,11 +41,22 @@ public class MicrophoneInstance : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp("space"))
+        // UNCOMMENT THE BLOCK COMMENT FOR VR
+        /*
+        InputDevice leftDevice = InputDevices.GetDeviceAtXRNode(leftHandSource);
+        if (vrButtonPressedCurrent == false) leftDevice.TryGetFeatureValue(CommonUsages.primaryButton, out vrButtonPressedCurrent);
+        if (vrButtonPressedCurrent == false) leftDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out vrButtonPressedCurrent);
+        InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(rightHandSource);
+        if (vrButtonPressedCurrent == false) rightDevice.TryGetFeatureValue(CommonUsages.primaryButton, out vrButtonPressedCurrent);
+        if (vrButtonPressedCurrent == false) rightDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out vrButtonPressedCurrent);
+        */
+
+        if (Input.GetKeyUp("space") || (vrButtonPressedPrevious == true && vrButtonPressedCurrent == false))
         {
             StartCoroutine(_batchDeepgramInstance.SendRequest(samplesForBatch, wavHeader));
             samplesForBatch = new byte[0];
         }
+        vrButtonPressedPrevious = vrButtonPressedCurrent;
 
         if ((currentPosition = Microphone.GetPosition(null)) > 0)
         {
@@ -58,7 +77,7 @@ public class MicrophoneInstance : MonoBehaviour
                 var samplesAsBytes = new byte[samplesAsShorts.Length * 2];
                 System.Buffer.BlockCopy(samplesAsShorts, 0, samplesAsBytes, 0, samplesAsBytes.Length);
 
-                if (Input.GetKey("space"))
+                if (Input.GetKey("space") || vrButtonPressedCurrent)
                 {
                     AddToBatchSamples(samplesAsBytes);
                 }

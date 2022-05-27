@@ -369,6 +369,7 @@ public class ASRTriggerController : MonoBehaviour
     };
 
     bool onCharadesPlane = false;
+    bool onSentimentPlane = false;
 
     void Start()
     {
@@ -409,9 +410,8 @@ public class ASRTriggerController : MonoBehaviour
 
     void Update()
     {
-        GameObject lobbyPlane = GameObject.Find("LobbyPlane");
         GameObject charadesPlane = GameObject.Find("CharadesPlane");
-        GameObject cleverbotPlane = GameObject.Find("CleverbotPlane");
+        GameObject sentimentPlane = GameObject.Find("SentimentPlane");
 
         if (Vector3.Distance(Camera.main.transform.position, charadesPlane.transform.position) < 25 * Mathf.Sqrt(2))
         {
@@ -427,12 +427,23 @@ public class ASRTriggerController : MonoBehaviour
             askingQuestion = false;
         }
 
+        if (Vector3.Distance(Camera.main.transform.position, sentimentPlane.transform.position) < 25 * Mathf.Sqrt(2))
+        {
+            if (!onSentimentPlane)
+            {
+                onSentimentPlane = true;
+                StartCoroutine(PlayTextAsAudio("Hatch the chrysalis by telling it happy stories! Press space, a, b, x, or y to start recording your story. But be careful! If you get angry or upset, you might kill it!"));
+            }
+        }
+        else
+        {
+            onSentimentPlane = false;
+        }
     }
 
     public void HandleSentimentASR(Word[] words)
     {
-        GameObject sentimentPlane = GameObject.Find("SentimentPlane");
-        if (Vector3.Distance(Camera.main.transform.position, sentimentPlane.transform.position) < 25 * Mathf.Sqrt(2))
+        if (onSentimentPlane)
         {
             int positiveCount = 0;
             int negativeCount = 0;
@@ -478,7 +489,6 @@ public class ASRTriggerController : MonoBehaviour
         }
 
         GameObject lobbyPlane = GameObject.Find("LobbyPlane");
-        GameObject charadesPlane = GameObject.Find("CharadesPlane");
         GameObject cleverbotPlane = GameObject.Find("CleverbotPlane");
 
         if (Vector3.Distance(Camera.main.transform.position, lobbyPlane.transform.position) < 25 * Mathf.Sqrt(2))
