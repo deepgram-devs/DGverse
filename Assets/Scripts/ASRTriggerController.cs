@@ -20,6 +20,10 @@ public class ASRTriggerController : MonoBehaviour
 {
     public Material materialDGRed;
     public Material materialApple;
+    public Material materialButterfly;
+    public Material materialCaterpillar;
+
+    bool isButterfly = false;
 
     private bool cleverbotConversationStarted = false;
     private string cleverbotCS;
@@ -79,6 +83,36 @@ public class ASRTriggerController : MonoBehaviour
             askingQuestion = false;
         }
 
+    }
+
+    public void HandleSentimentASR(Word[] words)
+    {
+        int positiveCount = 0;
+        int negativeCount = 0;
+        foreach (var word in words)
+        {
+            var sentiment = word.sentiment;
+            Debug.Log(sentiment);
+            if (sentiment == "positive") positiveCount += 1;
+            if (sentiment == "negative") negativeCount += 1;
+        }
+        Debug.Log("positive: " + positiveCount);
+        Debug.Log("negative: " + negativeCount);
+        GameObject butterflyCube = GameObject.Find("Butterfly");
+        if (positiveCount > negativeCount && !isButterfly)
+        {
+            isButterfly = true;
+            butterflyCube.GetComponent<Renderer>().material = materialButterfly;
+        }
+        else if (negativeCount > positiveCount && isButterfly)
+        {
+            isButterfly = false;
+            butterflyCube.GetComponent<Renderer>().material = materialCaterpillar;
+        }
+        else if (negativeCount > positiveCount && !isButterfly)
+        {
+            Rigidbody butterflyRigidbody = butterflyCube.AddComponent<Rigidbody>();
+        }
     }
 
     public void HandleASR(string message)
@@ -245,4 +279,5 @@ public class ASRTriggerController : MonoBehaviour
             }
         }
     }
+
 }
