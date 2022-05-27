@@ -23,6 +23,10 @@ public class ASRTriggerController : MonoBehaviour
     public Material materialButterfly;
     public Material materialCaterpillar;
 
+    public Material materialDGversalStudios;
+    public Material materialDGversity;
+    public Material materialDGverse;
+
     bool isButterfly = false;
 
     private bool cleverbotConversationStarted = false;
@@ -368,7 +372,39 @@ public class ASRTriggerController : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(PlayIntro());
+    }
 
+    IEnumerator PlayIntro()
+    {
+        yield return new WaitForSeconds(2);
+
+        GameObject x = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        x.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 8.0f;
+        x.transform.localScale = new Vector3(4.0f, 1.0f, 0.1f);
+        x.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - x.transform.position);
+        x.GetComponent<Renderer>().material = materialDGversalStudios;
+        StartCoroutine(PlayTextAsAudio("d g verse all studios presents"));
+        yield return new WaitForSeconds(3);
+        Rigidbody xRigidbody = x.AddComponent<Rigidbody>();
+
+        GameObject y = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        y.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 8.0f;
+        y.transform.localScale = new Vector3(4.0f, 1.0f, 0.1f);
+        y.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - y.transform.position);
+        y.GetComponent<Renderer>().material = materialDGverse;
+        StartCoroutine(PlayTextAsAudio("the first installment of the d g verse"));
+        yield return new WaitForSeconds(4);
+        Rigidbody yRigidbody = y.AddComponent<Rigidbody>();
+
+        GameObject z = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        z.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 8.0f;
+        z.transform.localScale = new Vector3(4.0f, 1.0f, 0.1f);
+        z.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - z.transform.position);
+        z.GetComponent<Renderer>().material = materialDGversity;
+        StartCoroutine(PlayTextAsAudio("the d g verse city"));
+        yield return new WaitForSeconds(3);
+        Rigidbody zRigidbody = z.AddComponent<Rigidbody>();
     }
 
     void Update()
@@ -573,7 +609,7 @@ public class ASRTriggerController : MonoBehaviour
 
     IEnumerator PlayTextAsAudio(string text)
     {
-        string url = "https://dgversetts.deepgram.com/text-to-speech/polly?text=" + text;
+        string url = "https://dgversetts.deepgram.com/text-to-speech/gtts?text=" + text;
         using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(url, AudioType.MPEG))
         {
             yield return www.SendWebRequest();
@@ -591,5 +627,4 @@ public class ASRTriggerController : MonoBehaviour
             }
         }
     }
-
 }
