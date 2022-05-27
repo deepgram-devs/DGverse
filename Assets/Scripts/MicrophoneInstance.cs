@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.XR;
 
 [RequireComponent(typeof(AudioSource))]
 public class MicrophoneInstance : MonoBehaviour
 {
+    public XRNode rightHandSource;
+
+    bool rightPrimaryPressedPrevious = false;
+    bool rightPrimaryPressedCurrent = false;
+
     AudioSource _audioSource;
     int lastPosition, currentPosition;
 
@@ -33,11 +39,16 @@ public class MicrophoneInstance : MonoBehaviour
 
     void Update()
     {
+        InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(rightHandSource);
+        rightDevice.TryGetFeatureValue(CommonUsages.primaryButton, out rightPrimaryPressedCurrent);
+
+        // CHANGE FOR 3D/VR: use "if (Input.GetKeyUp("space"))" for 3D and "if (rightPrimaryPressedPrevious == true && rightPrimaryPressedCurrent == false)" for VR
         if (Input.GetKeyUp("space"))
         {
             StartCoroutine(_batchDeepgramInstance.SendRequest(samplesForBatch, wavHeader));
             samplesForBatch = new byte[0];
         }
+        rightPrimaryPressedPrevious = rightPrimaryPressedCurrent;
 
         if ((currentPosition = Microphone.GetPosition(null)) > 0)
         {
@@ -58,6 +69,7 @@ public class MicrophoneInstance : MonoBehaviour
                 var samplesAsBytes = new byte[samplesAsShorts.Length * 2];
                 System.Buffer.BlockCopy(samplesAsShorts, 0, samplesAsBytes, 0, samplesAsBytes.Length);
 
+                // CHANGE FOR 3D/VR: use "if (Input.GetKey("space"))" for 3D and "if (rightPrimaryPressedCurrent)" for VR
                 if (Input.GetKey("space"))
                 {
                     AddToBatchSamples(samplesAsBytes);
