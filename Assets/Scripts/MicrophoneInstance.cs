@@ -9,8 +9,8 @@ public class MicrophoneInstance : MonoBehaviour
 {
     public XRNode rightHandSource;
 
-    bool rightPrimaryPressedPrevious = false;
-    bool rightPrimaryPressedCurrent = false;
+    bool rightSecondaryPressedPrevious = false;
+    bool rightSecondaryPressedCurrent = false;
 
     AudioSource _audioSource;
     int lastPosition, currentPosition;
@@ -40,15 +40,15 @@ public class MicrophoneInstance : MonoBehaviour
     void Update()
     {
         InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(rightHandSource);
-        rightDevice.TryGetFeatureValue(CommonUsages.primaryButton, out rightPrimaryPressedCurrent);
+        rightDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out rightSecondaryPressedCurrent);
 
-        // CHANGE FOR 3D/VR: use "if (Input.GetKeyUp("space"))" for 3D and "if (rightPrimaryPressedPrevious == true && rightPrimaryPressedCurrent == false)" for VR
+        // CHANGE FOR 3D/VR: use "if (Input.GetKeyUp("space"))" for 3D and "if (rightSecondaryPressedPrevious == true && rightSecondaryPressedCurrent == false)" for VR
         if (Input.GetKeyUp("space"))
         {
             StartCoroutine(_batchDeepgramInstance.SendRequest(samplesForBatch, wavHeader));
             samplesForBatch = new byte[0];
         }
-        rightPrimaryPressedPrevious = rightPrimaryPressedCurrent;
+        rightSecondaryPressedPrevious = rightSecondaryPressedCurrent;
 
         if ((currentPosition = Microphone.GetPosition(null)) > 0)
         {
@@ -69,7 +69,7 @@ public class MicrophoneInstance : MonoBehaviour
                 var samplesAsBytes = new byte[samplesAsShorts.Length * 2];
                 System.Buffer.BlockCopy(samplesAsShorts, 0, samplesAsBytes, 0, samplesAsBytes.Length);
 
-                // CHANGE FOR 3D/VR: use "if (Input.GetKey("space"))" for 3D and "if (rightPrimaryPressedCurrent)" for VR
+                // CHANGE FOR 3D/VR: use "if (Input.GetKey("space"))" for 3D and "if (rightSecondaryPressedCurrent)" for VR
                 if (Input.GetKey("space"))
                 {
                     AddToBatchSamples(samplesAsBytes);

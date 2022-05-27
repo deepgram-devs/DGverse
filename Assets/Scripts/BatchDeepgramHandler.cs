@@ -40,6 +40,7 @@ public class Word
 public class BatchDeepgramHandler : MonoBehaviour
 {
     public ASRTriggerController asrTriggerController;
+    public TMP_Text textField;
 
     async void Start() { }
 
@@ -47,6 +48,8 @@ public class BatchDeepgramHandler : MonoBehaviour
 
     public IEnumerator SendRequest(byte[] audioData, byte[] wavHeader)
     {
+        textField.text = "Sending Batch Request";
+
         var audioFile = new byte[audioData.Length + wavHeader.Length];
         System.Buffer.BlockCopy(wavHeader, 0, audioFile, 0, wavHeader.Length);
         System.Buffer.BlockCopy(audioData, 0, audioFile, wavHeader.Length, audioData.Length);
@@ -63,13 +66,29 @@ public class BatchDeepgramHandler : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
+                textField.text = "Batch request error occured!";
                 Debug.Log(www.error);
             }
             else
             {
                 Debug.Log("Batch response: " + www.downloadHandler.text.ToString());
+
                 SentimentResponse response = JsonUtility.FromJson<SentimentResponse>(www.downloadHandler.text);
                 var words = response.results.channels[0].alternatives[0].words;
+
+                int positiveCount = 0;
+                int negativeCount = 0;
+                foreach (var word in words)
+                {
+                    var sentiment = word.sentiment;
+                    Debug.Log(sentiment);
+                    if (sentiment == "positive") positiveCount += 1;
+                    if (sentiment == "negative") negativeCount += 1;
+                }
+                Debug.Log("positive: " + positiveCount);
+                Debug.Log("negative: " + negativeCount);
+                textField.text = "positive count: " + positiveCount.ToString() + "; negative count: " + negativeCount.ToString();
+
                 asrTriggerController.HandleSentimentASR(words);
             }
         }

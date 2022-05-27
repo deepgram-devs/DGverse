@@ -406,6 +406,8 @@ public class ASRTriggerController : MonoBehaviour
         StartCoroutine(PlayTextAsAudio("the d g verse city"));
         yield return new WaitForSeconds(3);
         Rigidbody zRigidbody = z.AddComponent<Rigidbody>();
+
+        StartCoroutine(PlayTextAsAudio("you begin in the lobby, where dreams come true. trying saying something like cube or sphere and see your words come to life"));
     }
 
     void Update()
@@ -435,7 +437,7 @@ public class ASRTriggerController : MonoBehaviour
             if (!onSentimentPlane)
             {
                 onSentimentPlane = true;
-                StartCoroutine(PlayTextAsAudio("Hatch the chrysalis by telling it happy stories! Press space on a computer or the ay button on a quest 2 to start recording your story. But be careful! If you get angry or upset, you might kill it!"));
+                StartCoroutine(PlayTextAsAudio("Hatch the chrysalis by telling it happy stories! Press space on a computer or the B button on a quest 2 to start recording your story. But be careful! If you get angry or upset, you might kill it!"));
             }
         }
         else
@@ -464,15 +466,22 @@ public class ASRTriggerController : MonoBehaviour
             {
                 isButterfly = true;
                 butterflyCube.GetComponent<Renderer>().material = materialButterfly;
+                StartCoroutine(PlayTextAsAudio("Congratulations, through your positive emotions the chrysalis has become a butterfly!"));
             }
             else if (negativeCount > positiveCount && isButterfly)
             {
                 isButterfly = false;
                 butterflyCube.GetComponent<Renderer>().material = materialCaterpillar;
+                StartCoroutine(PlayTextAsAudio("Oh no, the butterfly has become a chrysalis again due to your negative emotions."));
             }
             else if (negativeCount > positiveCount && !isButterfly)
             {
                 Rigidbody butterflyRigidbody = butterflyCube.AddComponent<Rigidbody>();
+                StartCoroutine(PlayTextAsAudio("Oh no, it is falling, how unlucky."));
+            }
+            if (negativeCount == 0 && positiveCount == 0)
+            {
+                StartCoroutine(PlayTextAsAudio("It couldn't sense your emotions, try again, but this time use. More. Intensity."));
             }
         }
     }

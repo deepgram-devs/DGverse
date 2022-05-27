@@ -27,6 +27,6 @@ public class CameraControllerVR : MonoBehaviour
     {
         Quaternion headYaw = Quaternion.Euler(0, cam.transform.eulerAngles.y, 0);
         Vector3 direction = headYaw * new Vector3(inputAxis.x, 0, inputAxis.y);
-        character.Move(direction * Time.fixedDeltaTime * 10.0f);
+        character.Move(direction * Time.fixedDeltaTime * 20.0f);
     }
 }
