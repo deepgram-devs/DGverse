@@ -410,6 +410,9 @@ public class ASRTriggerController : MonoBehaviour
 
     void Update()
     {
+        // CHANGE FOR 3D/VR: comment out the following line for VR, uncomment it for 3D
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+
         GameObject charadesPlane = GameObject.Find("CharadesPlane");
         GameObject sentimentPlane = GameObject.Find("SentimentPlane");
 
