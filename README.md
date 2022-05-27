@@ -172,7 +172,8 @@ controls and replacing them with movement controls which use the left joystick o
 aren't needed in VR as the "XRRig" object somehow uses the VR headset for tracking where you are looking.
 
 Now, edit the `MicrophoneInstance.cs` script and look for the comments which say "CHANGE FOR 3D/VR" - these comments should tell you what lines
-need to be changed. Also, modify the MicrophoneObject and add "Right Hand" to the "Right Hand Source".
+need to be changed. Also, modify the MicrophoneObject and add "Right Hand" to the "Right Hand Source". Do the same for `ASRTriggerController.cs`,
+i.e. look for comments which say "CHANGE FOR 3D/VR" and follow the instructions.
 
 Finally, go back to `File -> Build Settings`, click "Build", and give a name to the APK file you are about to build.
 You may get some (two?) warnings/notifications to upgrade the Android SDK - click "Update Android SDK" in all (both?) cases:
