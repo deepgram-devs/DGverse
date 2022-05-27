@@ -395,31 +395,35 @@ public class ASRTriggerController : MonoBehaviour
 
     public void HandleSentimentASR(Word[] words)
     {
-        int positiveCount = 0;
-        int negativeCount = 0;
-        foreach (var word in words)
+        GameObject sentimentPlane = GameObject.Find("SentimentPlane");
+        if (Vector3.Distance(Camera.main.transform.position, sentimentPlane.transform.position) < 25 * Mathf.Sqrt(2))
         {
-            var sentiment = word.sentiment;
-            Debug.Log(sentiment);
-            if (sentiment == "positive") positiveCount += 1;
-            if (sentiment == "negative") negativeCount += 1;
-        }
-        Debug.Log("positive: " + positiveCount);
-        Debug.Log("negative: " + negativeCount);
-        GameObject butterflyCube = GameObject.Find("Butterfly");
-        if (positiveCount > negativeCount && !isButterfly)
-        {
-            isButterfly = true;
-            butterflyCube.GetComponent<Renderer>().material = materialButterfly;
-        }
-        else if (negativeCount > positiveCount && isButterfly)
-        {
-            isButterfly = false;
-            butterflyCube.GetComponent<Renderer>().material = materialCaterpillar;
-        }
-        else if (negativeCount > positiveCount && !isButterfly)
-        {
-            Rigidbody butterflyRigidbody = butterflyCube.AddComponent<Rigidbody>();
+            int positiveCount = 0;
+            int negativeCount = 0;
+            foreach (var word in words)
+            {
+                var sentiment = word.sentiment;
+                Debug.Log(sentiment);
+                if (sentiment == "positive") positiveCount += 1;
+                if (sentiment == "negative") negativeCount += 1;
+            }
+            Debug.Log("positive: " + positiveCount);
+            Debug.Log("negative: " + negativeCount);
+            GameObject butterflyCube = GameObject.Find("Butterfly");
+            if (positiveCount > negativeCount && !isButterfly)
+            {
+                isButterfly = true;
+                butterflyCube.GetComponent<Renderer>().material = materialButterfly;
+            }
+            else if (negativeCount > positiveCount && isButterfly)
+            {
+                isButterfly = false;
+                butterflyCube.GetComponent<Renderer>().material = materialCaterpillar;
+            }
+            else if (negativeCount > positiveCount && !isButterfly)
+            {
+                Rigidbody butterflyRigidbody = butterflyCube.AddComponent<Rigidbody>();
+            }
         }
     }
 
