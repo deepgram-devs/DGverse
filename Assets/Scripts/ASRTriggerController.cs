@@ -33,17 +33,6 @@ public class ASRTriggerController : MonoBehaviour
     private int questionIndex = 0;
     private CharadesQuestion[] charadeQuestions = new CharadesQuestion[] {
         new CharadesQuestion {
-            solution = "apple",
-            hints = new string [] {
-                "It can be a lady or a granny",
-                "It's a treat for teacher",
-                "It keeps doctors away",
-                "It's delicious in pie & cobbler",
-                "You pick it in the fall",
-                "It can be Red Delicious"
-            }
-        },
-        new CharadesQuestion {
             solution = "zoo",
             hints = new string [] {
                 "Dr. Seuss wanted to run one",
@@ -63,6 +52,17 @@ public class ASRTriggerController : MonoBehaviour
                 "You might have cases for them",
                 "You probably had to buy some for college classes",
                 "It's best when read"
+            }
+        },
+        new CharadesQuestion {
+            solution = "apple",
+            hints = new string [] {
+                "It can be a lady or a granny",
+                "It's a treat for teacher",
+                "It keeps doctors away",
+                "It's delicious in pie & cobbler",
+                "You pick it in the fall",
+                "It can be Red Delicious"
             }
         },
         new CharadesQuestion {
@@ -431,6 +431,16 @@ public class ASRTriggerController : MonoBehaviour
     {
         Debug.Log("HandleASR: " + message);
 
+        if (message.Contains("apple"))
+        {
+            GameObject x = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Rigidbody xRigidbody = x.AddComponent<Rigidbody>();
+            x.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5.0f;
+            x.transform.localScale = new Vector3(1.0f, 1.0f, 0.1f);
+            x.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - x.transform.position);
+            x.GetComponent<Renderer>().material = materialApple;
+        }
+
         GameObject lobbyPlane = GameObject.Find("LobbyPlane");
         GameObject charadesPlane = GameObject.Find("CharadesPlane");
         GameObject cleverbotPlane = GameObject.Find("CleverbotPlane");
@@ -459,16 +469,6 @@ public class ASRTriggerController : MonoBehaviour
                 x.transform.localScale = new Vector3(1.0f, 1.0f, 0.1f);
                 x.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - x.transform.position);
                 x.GetComponent<Renderer>().material = materialDGRed;
-            }
-
-            if (message.Contains("apple"))
-            {
-                GameObject x = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                Rigidbody xRigidbody = x.AddComponent<Rigidbody>();
-                x.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 5.0f;
-                x.transform.localScale = new Vector3(1.0f, 1.0f, 0.1f);
-                x.transform.rotation = Quaternion.LookRotation(Camera.main.transform.position - x.transform.position);
-                x.GetComponent<Renderer>().material = materialApple;
             }
         }
 
